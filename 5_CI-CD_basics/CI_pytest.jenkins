@@ -1,0 +1,34 @@
+pipeline {
+   agent any
+
+   stages {
+   
+      stage('Install Requirements') {
+        steps{ 
+		      echo "Install requirements for PyTest"
+          	  sh 'python3 --version'
+		      sh 'pip3 install -r 5_CI-CD_basics/PyTest/requirements.txt'
+        }
+        }
+
+      stage('Run PyTest') {
+        steps{ 
+		echo "Run Pytest"
+		sh script:'''
+          		#!/bin/bash
+          		echo "This is start $(pwd)"
+          		cd ./5_CI-CD_basics/PyTest/tests
+          		echo "This is $(pwd)"
+			    pytest --html=report.html AS_HW_2_PyTest.py
+        		'''
+        }
+        }
+  }
+  post
+  {
+  	always
+	{
+		 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/jenkins_home/workspace/GitHub_pipeline/5_CI-CD_basics/PyTest/tests', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+	}
+  }
+}
