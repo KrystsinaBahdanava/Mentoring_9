@@ -28,7 +28,7 @@ pipeline {
   {
   	always
 	{
-		 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/jenkins_home/workspace/test2/5_CI-CD_basics/PyTest/tests/report.html', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+		 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/jenkins_home/workspace/test2/5_CI-CD_basics/PyTest/tests/', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
 	}
   }
 }
